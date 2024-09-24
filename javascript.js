@@ -1,14 +1,40 @@
+const button = document.querySelector("button");
 const containerDiv = document.querySelector(".container");
 
-let numberOfSquareDivs = 16 * 16;
+function getUserChoice() {
+  button.addEventListener("click", () => {
+    let userInput = prompt("Enter a value upto 100:", 8);
 
-for (let i = 1; i <= numberOfSquareDivs; i++) {
-  const squareDiv = document.createElement("div");
-  squareDiv.setAttribute("class", "square");
-  containerDiv.appendChild(squareDiv);
+    if (userInput === null) {
+      return;
+    } else {
+      userInput = parseInt(userInput, 10);
+    }
 
-  squareDiv.addEventListener('mouseover', () => {
-    squareDiv.style.backgroundColor = 'red';
-})
+    if (isNaN(userInput) || userInput < 1 || userInput > 100) {
+      alert("Enter a valid number!");
+      return;
+    } else if (userInput === null) {
+      return;
+    }
+
+    let numberOfSquareDivs = userInput * userInput;
+
+    console.log(String(1/userInput *100) + '%')
+
+    for (let i = 1; i <= numberOfSquareDivs; i++) {
+      const squareDiv = document.createElement("div");
+      squareDiv.setAttribute("class", "square");
+      squareDiv.style.width = String(1/userInput *100) + '%';       // Adjust based on the number of squares per row
+      squareDiv.style.paddingTop = String(1/userInput *100) + '%';  // Maintain aspect ratio (1:1)
+      containerDiv.appendChild(squareDiv);
+
+      squareDiv.addEventListener("mouseover", () => {
+        squareDiv.style.backgroundColor = "red";
+      });
+    }
+  });
 }
+
+getUserChoice();
 
