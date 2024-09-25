@@ -28,7 +28,11 @@ function getUserChoice() {
       containerDiv.appendChild(squareDiv);
 
       squareDiv.addEventListener("mouseover", () => {
-        squareDiv.style.backgroundColor = "red";
+        randomRed = Math.floor(Math.random() * (255 - 1)) + 1;
+        randomGreen = Math.floor(Math.random() * (255 - 1)) + 1;
+        randomBlue = Math.floor(Math.random() * (255 - 1)) + 1;
+
+        squareDiv.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`;
       });
     }
   });
